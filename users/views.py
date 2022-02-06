@@ -182,7 +182,8 @@ def viewMessage(request, pk):
     context = {'message': message}
     return render(request, 'users/message.html', context)
 
-
+@login_required(login_url='login')
+#To prevent spam message user must login to send message to a developer 
 def createMessage(request, pk):
     recipient = Profile.objects.get(id=pk)
     form = MessageForm()
